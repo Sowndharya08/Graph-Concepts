@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+void dfs(int nd,vector<int> adj[] ,vector<bool>&visited){
+    cout<<nd<<" ";
+    visited[nd]=true;
+    for(int it:adj[nd]){
+        if(!visited[it]){
+            dfs(it,adj,visited);
+            
+        }
+    }
+    
+    
+}
+
+int main() {
+   int n,e;
+   std::cin>>n>>e;
+   std::vector<int> adj[n+1];
+   for(int i=0;i<e;i++){
+       int u,v;
+       std::cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+        
+   }
+   std::vector<bool>visited(n+1,false);
+   for(int i=1;i<=n;i++){
+       if(visited[i]==false){                //check for new connectde component
+       dfs(i,adj,visited);
+   }
+   }
+   
+    std::cout << "Try programiz.pro";
+
+    return 0;
+}
