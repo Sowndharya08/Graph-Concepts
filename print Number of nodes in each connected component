@@ -1,0 +1,63 @@
+// Online C++ compiler to run C++ program online//
+//START CNT ALWAYS WITH ONE WHEN COUNTING IN RECURSIONN..INSIDE THE DFS FUNCTIONNN
+#include <iostream>
+#include <vector>
+using namespace std;
+int dfs(int nd,vector<int> adj[] ,vector<bool>&visited){
+    // cout<<nd<<" ";
+int cnt=1;
+    visited[nd]=true;
+    for(int it:adj[nd]){
+        if(!visited[it]){
+            cnt+=dfs(it,adj,visited);
+            
+        }
+        
+    }
+    
+    return cnt;
+}
+
+int main() {
+   int n,e;
+   std::cin>>n>>e;
+   std::vector<int> adj[n+1];
+   for(int i=0;i<e;i++){
+       int u,v;
+       std::cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+        
+   }
+   std::vector<bool>visited(n+1,false);
+
+   for(int i=1;i<=n;i++){
+       if(visited[i]==false){
+           //check for new connected component
+     int count= dfs(i,adj,visited);
+      cout<<count<<"\n";
+   }
+   }
+ return 0;
+}
+TEST CASES------------------------------------------------------------------------------------------------>
+7
+5
+1 2
+1 3
+3 4
+3 5
+6 7
+// adjacency list
+1:2,3
+2:1
+3:1,4,5
+4:3
+5:3
+^:7
+7:6
+
+//number of connected componect for the gn graph :2
+number of nodes in each connected component:
+5
+2
