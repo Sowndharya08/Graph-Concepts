@@ -1,0 +1,21 @@
+USING ADJACENCY LISTT------------------------------------>SPACE: O(2*E)
+
+int main() {
+   int n,e;
+   std::cin>>n>>e;
+   std::vector<int> adj[n+1];
+   for(int i=0;i<e;i++){
+       int u,v;
+       std::cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+        
+   }
+   //PRINTING ADJACENCY LIST
+  for(int i=1;i<=n;i++){
+      std::cout<<i<<":";
+      for(int a:adj[i]){
+          std::cout<<a<<" ";
+      }
+      std::cout<<"\n";
+  }
